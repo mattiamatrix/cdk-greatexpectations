@@ -1,8 +1,9 @@
 {
   "name": "cdk-greatexpectations",
+  "description": ".",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mattia.sappa/cdk-greatexpectations.git"
+    "url": "https://github.com/mattiamatrix/cdk-greatexpectations"
   },
   "scripts": {
     "build": "npx projen build",
@@ -11,7 +12,6 @@
     "compat": "npx projen compat",
     "compile": "npx projen compile",
     "default": "npx projen default",
-    "docgen": "npx projen docgen",
     "eject": "npx projen eject",
     "eslint": "npx projen eslint",
     "package": "npx projen package",
@@ -30,39 +30,48 @@
   },
   "author": {
     "name": "Mattia Sappa",
-    "email": "mattia.sappa@showpad.com",
+    "email": "mattiasappa@gmail.com",
     "organization": false
   },
   "devDependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^3.4.0",
     "@types/jest": "^27",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
     "@typescript-eslint/parser": "^5",
-    "aws-cdk-lib": "2.1.0",
+    "aws-cdk-lib": "2.40.0",
     "constructs": "10.0.5",
     "eslint": "^8",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^3.5.2",
     "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-promise": "^6.1.1",
     "jest": "^27",
     "jest-junit": "^13",
     "jsii": "^1.70.0",
     "jsii-diff": "^1.70.0",
-    "jsii-docgen": "^7.0.131",
     "jsii-pacmak": "^1.70.0",
     "json-schema": "^0.4.0",
     "npm-check-updates": "^16",
+    "prettier": "^2.7.1",
     "projen": "^0.65.3",
     "standard-version": "^9",
     "ts-jest": "^27",
+    "ts-node": "^10.9.1",
+    "tsc-alias": "^1.7.0",
     "typescript": "^4.8.4"
   },
   "peerDependencies": {
-    "aws-cdk-lib": "^2.1.0",
+    "aws-cdk-lib": "^2.40.0",
     "constructs": "^10.0.5"
   },
   "keywords": [
-    "cdk"
+    "athena",
+    "aws",
+    "cdk",
+    "greatexpectations"
   ],
   "main": "lib/index.js",
   "license": "Apache-2.0",
@@ -108,7 +117,7 @@
     }
   },
   "types": "lib/index.d.ts",
-  "stability": "stable",
+  "stability": "experimental",
   "jsii": {
     "outdir": "dist",
     "targets": {},

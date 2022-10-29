@@ -1,15 +1,56 @@
-const { awscdk } = require('projen');
+const { awscdk, release } = require('projen');
 const project = new awscdk.AwsCdkConstructLibrary({
-  author: 'Mattia Sappa',
-  authorAddress: 'mattia.sappa@showpad.com',
-  cdkVersion: '2.1.0',
-  defaultReleaseBranch: 'main',
   name: 'cdk-greatexpectations',
-  repositoryUrl: 'https://github.com/mattia.sappa/cdk-greatexpectations.git',
+  description: '.',
+  repositoryUrl: 'https://github.com/mattiamatrix/cdk-greatexpectations',
 
+  author: 'Mattia Sappa',
+  authorAddress: 'mattiasappa@gmail.com',
+
+  stability: 'experimental',
+  defaultReleaseBranch: 'main',
+  keywords: ['aws', 'athena', 'greatexpectations'],
+
+  docgen: false,
+
+  cdkVersion: '2.40.0',
   // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],             /* Build dependencies for this module. */
-  // packageName: undefined,  /* The "name" in package.json. */
+  devDeps: [
+    '@trivago/prettier-plugin-sort-imports',
+    'eslint-config-prettier',
+    'eslint-plugin-prettier',
+    'eslint-plugin-promise',
+    'ts-node',
+    'tsc-alias',
+  ],
+
+  eslint: true,
+  prettier: true,
+  prettierOptions: {
+    settings: {
+      semi: true,
+      trailingComma: 'all',
+      singleQuote: true,
+      printWidth: 120,
+      tabWidth: 2,
+      importOrder: ['^constructs(.*)$', '^aws-cdk(.*)$', '^@aws-sdk(.*)$', '^test/(.*)$', '^[./]'],
+      importOrderSeparation: true,
+    },
+  },
+
+  dependabot: false,
 });
+
+// .eslintrc.json
+project.eslint.addRules({ 'import/order': 'off' });
+
+const common_exclude = ['cdk.out', 'cdk.context.json', 'yarn-error.log', 'coverage', 'venv'];
+
+// .gitignore
+project.gitignore.exclude(...common_exclude);
+// .npmignore
+project.npmignore.exclude(...common_exclude);
+// .prettierignore
+[...common_exclude, 'node_modules', 'dist', 'out'].forEach((element) => project.prettier.addIgnorePattern(element));
+
 project.synth();
